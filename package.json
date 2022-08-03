@@ -1,0 +1,30 @@
+{
+  "name": "sandbox--hardhat",
+  "version": "1.0.0",
+  "description": "A playground project used to discover new techniques, tools or just to try things out.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx hardhat test",
+    "coverage": "npx hardhat coverage",
+    "deploy": "npx hardhat run scripts/deploy.ts",
+    "deploy-goerli": "npm run deploy -- --network goerli",
+    "deploy-localhost": "npm run deploy -- --network localhost",
+    "hardhat-node": "npx hardhat node",
+    "typechain": "npx hardhat typechain"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^1.0.2",
+    "@nomiclabs/hardhat-etherscan": "^3.1.0",
+    "@typechain/ethers-v5": "^10.1.0",
+    "@typechain/hardhat": "^6.1.2",
+    "dotenv": "^16.0.1",
+    "hardhat": "^2.10.1",
+    "hardhat-gas-reporter": "^1.0.8",
+    "prettier": "^2.7.1",
+    "prettier-plugin-solidity": "^1.0.0-dev.23",
+    "solidity-coverage": "^0.7.21",
+    "typechain": "^8.1.0"
+  }
+}
