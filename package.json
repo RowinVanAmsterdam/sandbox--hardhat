@@ -7,6 +7,8 @@
     "hardhat": "npx hardhat",
     "compile": "npx hardhat compile",
     "test": "npx hardhat test",
+    "test-goerli": "npm run test -- --network goerli",
+    "single-test": "npm run test -- --grep",
     "coverage": "npx hardhat coverage",
     "deploy": "npx hardhat run scripts/deploy.ts",
     "deploy-goerli": "npm run deploy -- --network goerli",
@@ -15,7 +17,12 @@
     "hardhat-deploy-goerli": "npm run hardhat-deploy -- --network goerli",
     "hardhat-deploy-mocks": "npm run hardhat-deploy -- --tags mocks",
     "hardhat-node": "npx hardhat node",
-    "typechain": "npx hardhat typechain"
+    "typechain": "npx hardhat typechain",
+    "fund-contract": "npx hardhat run ./scripts/fund.ts --network localhost",
+    "withdraw-contract": "npx hardhat run ./scripts/withdraw.ts --network localhost",
+    "lint": "npx solhint 'contracts/*.sol'",
+    "lint:fix": "npx solhint 'contracts/*.sol' --fix",
+    "format": "npx prettier --write ."
   },
   "author": "",
   "license": "ISC",
@@ -33,6 +40,7 @@
     "hardhat-gas-reporter": "^1.0.8",
     "prettier": "^2.7.1",
     "prettier-plugin-solidity": "^1.0.0-dev.23",
+    "solhint": "^3.3.7",
     "solidity-coverage": "^0.7.21",
     "typechain": "^8.1.0"
   }

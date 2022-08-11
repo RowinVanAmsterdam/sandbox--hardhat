@@ -1,5 +1,5 @@
 import { network } from "hardhat";
-import {developmentChains, networkConfig} from "../helper-hardhat-config";
+import { developmentChains, networkConfig } from "../helper-hardhat-config";
 import { verify } from "../utils/verify";
 
 module.exports = async ({ getNamedAccounts, deployments }: any) => {
@@ -8,11 +8,13 @@ module.exports = async ({ getNamedAccounts, deployments }: any) => {
     const chainId = network.config.chainId!;
     let ethUsdPriceFeedAddress;
 
-    if(developmentChains.includes(network.name)) {
+    if (developmentChains.includes(network.name)) {
         const ethUsdAggregator = await get("MockV3Aggregator");
         ethUsdPriceFeedAddress = ethUsdAggregator.address;
     } else {
-        ethUsdPriceFeedAddress = networkConfig[chainId as keyof typeof networkConfig].ethUsdPriceFeed;
+        ethUsdPriceFeedAddress =
+            networkConfig[chainId as keyof typeof networkConfig]
+                .ethUsdPriceFeed;
     }
 
     const args = [ethUsdPriceFeedAddress];
@@ -20,10 +22,13 @@ module.exports = async ({ getNamedAccounts, deployments }: any) => {
         from: deployer,
         args: args,
         log: true,
-        waitConfirmations: network.config.blockConfirmations || 1,
+        waitConfirmations: networkConfig[network.name].blockConfirmations || 0,
     });
 
-    if(!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
+    if (
+        !developmentChains.includes(network.name) &&
+        process.env.ETHERSCAN_API_KEY
+    ) {
         await verify(fundMe.address, args);
     }
     log("----------------------------------------------------");
