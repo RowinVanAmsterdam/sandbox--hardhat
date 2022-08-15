@@ -5,7 +5,7 @@ import { verify } from "../utils/verify";
 module.exports = async ({ getNamedAccounts, deployments }: any) => {
     const { deploy, log, get } = deployments;
     const { deployer } = await getNamedAccounts();
-    const chainId = network.config.chainId!;
+    const chainId: number = network.config.chainId!;
     let ethUsdPriceFeedAddress;
 
     if (developmentChains.includes(network.name)) {
@@ -22,7 +22,8 @@ module.exports = async ({ getNamedAccounts, deployments }: any) => {
         from: deployer,
         args: args,
         log: true,
-        waitConfirmations: networkConfig[network.name].blockConfirmations || 0,
+        // @ts-ignore
+        waitConfirmations: networkConfig[chainId].blockConfirmations || 0,
     });
 
     if (
