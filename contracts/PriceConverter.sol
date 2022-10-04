@@ -10,6 +10,7 @@ library PriceConverter {
         returns (uint256)
     {
         (, int256 price, , , ) = priceFeed.latestRoundData();
+        // ETH in terms of USD (8 decimals, for example 1000.00000000 = $1)
         return uint256(price * 1e10);
     }
 
